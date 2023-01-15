@@ -24,7 +24,7 @@ date_default_timezone_set('America/Sao_Paulo');
        
             <h1>Registrar Ponto</h1>
             <ul class="lista-pontos">
-               <div class="flex-li"><li><p>Entrada: </p> <span id="entrada"></span> </li><span onclick="edita_horario('entrada')"> <svg  class="pen"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg></span> </div> 
+               <div class="flex-li"><li><p>Entrada: </p> <span id="entrada"></span> </li><span onclick="abre_modal('entrada')"> <svg  class="pen"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg></span> </div> 
 
                <div class="flex-li"> <li><p>Saida Intervalo: </p> <span id="saida_intervalo"></span></li> <svg  class="pen"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg> </div> 
 
@@ -36,6 +36,15 @@ date_default_timezone_set('America/Sao_Paulo');
 
             </ul>
             <button class="registrar-btn" onclick="registra_horario()">Registrar Ponto</button>
+
+        <div id="input-box" class="edit-box">
+            <h3 class="editar-titulo">Editar Horario</h3>
+        <input type="time" id="input" name="horario">
+        <button id="salvar">Salvar</button>
+
+
+        </div>
+
           </div>
 
         </div>
@@ -45,14 +54,47 @@ date_default_timezone_set('America/Sao_Paulo');
   integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
   crossorigin="anonymous"></script>
     <script>
-
-
-//PEGA ELEMENOS DO HTML
-        var limite = document.getElementById('limite');
+  var limite = document.getElementById('limite');
         var entrada = $('#entrada').html();
         var saida_intervalo = $('#saida_intervalo').html();
         var retorno_intervalo = $('#retorno_intervalo').html();
         var saida = $('#saida').html();
+
+      // EDITA HORARIO
+      function abre_modal(id) {
+        var modal = document.getElementById('input-box');
+        var itemAlterar = document.getElementById(id);;
+        var salvar = document.getElementById('salvar');
+        modal.style.display = "flex";
+
+        salvar.addEventListener('click', edita_horario);
+
+        function edita_horario() {
+        var inputUsuario = document.getElementById('input').value;
+        
+        console.log(inputUsuario)
+
+        if (id = "entrada") {
+console.log("entrou na entrada")
+        }else {
+            console.log("não entrou")
+
+        
+        itemAlterar.innerHTML = inputUsuario;
+    }
+    }
+
+
+
+
+
+
+      }
+
+      
+
+//PEGA ELEMENOS DO HTML
+      
 //REGISTRA HORARIO
       function registra_horario() {
         var entrada = $('#entrada').html();
@@ -106,20 +148,6 @@ date_default_timezone_set('America/Sao_Paulo');
         }
       }
 
-      // EDITA HORARIO
-      function abre_modal(id) {
-
-
-        edita_horario(id);
-      }
-
-
-      function edita_horario(id) {
-        var span = document.getElementById(id);
-        span.innerHTML = "novo valor";
-
-
-      }
 
         //PEGA ELEMENTO HORARIO
         var apHorario = document.getElementById('horario');

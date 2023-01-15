@@ -45,6 +45,7 @@ img {
     border-radius: 20px;
     padding: 30px 10px 40px 10px;
     position: relative;
+    max-width: 100%;
     
 
 }
@@ -85,7 +86,8 @@ img {
     box-shadow: 0px 0px 2px 1px #333;
     padding: 5px;
     border-radius: 5px;
-    position: relative;
+    max-width: 100%;
+   
 }
 
 .msg {
@@ -117,5 +119,41 @@ img {
     border-radius: 15px;
 }
 #input {
-    width: 85px;
+    width: 185px;
+}
+
+body {
+    background-color: #dbdbdb;
+}
+
+.box {
+    position: relative;
+    background-color: #fff;
+    
+}
+.edit-box {
+    position: absolute;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+@media (max-width: 700px) {
+    .container {
+        max-width: 92vw;
+        margin: 0 auto;
+    }
+    .lista-pontos li {
+        width: 220px;
+    }
+    .box {
+        max-width: 86vw;
+    }
+}
+
+#salvar {
+    width: 96px;
+    height: 35px;
 }

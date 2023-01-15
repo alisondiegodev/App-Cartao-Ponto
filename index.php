@@ -24,10 +24,14 @@ date_default_timezone_set('America/Sao_Paulo');
        
             <h1>Registrar Ponto</h1>
             <ul class="lista-pontos">
-                <li><p>Entrada: </p> <span id="entrada"></span></li> 
-                <li><p>Saida Intervalo: </p> <span id="saida_intervalo"></span></li>
-                <li><p>Retorno Intervalo: </p> <span id="retorno_intervalo"></span></li>
-                <li><p>Saida: </p> <span id="saida"></span></li>
+               <div class="flex-li"><li><p>Entrada: </p> <span id="entrada"></span> </li><span onclick="edita_horario('entrada')"> <svg  class="pen"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg></span> </div> 
+
+               <div class="flex-li"> <li><p>Saida Intervalo: </p> <span id="saida_intervalo"></span></li> <svg  class="pen"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg> </div> 
+
+               <div class="flex-li"> <li><p>Retorno Intervalo: </p> <span id="retorno_intervalo"></span></li><svg  class="pen"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg> </div> 
+
+               <div class="flex-li"> <li><p>Saida: </p> <span id="saida"></span></li><svg  class="pen"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg> </div> 
+
                 <li><p>Horario Limite: </p> <span id="limite"></span></li>
 
             </ul>
@@ -49,9 +53,12 @@ date_default_timezone_set('America/Sao_Paulo');
         var saida_intervalo = $('#saida_intervalo').html();
         var retorno_intervalo = $('#retorno_intervalo').html();
         var saida = $('#saida').html();
-
+//REGISTRA HORARIO
       function registra_horario() {
         var entrada = $('#entrada').html();
+        var saida_intervalo = $('#saida_intervalo').html();
+        var retorno_intervalo = $('#retorno_intervalo').html();
+        var saida = $('#saida').html();
 
         if (entrada == "") {
             console.log('entrou no primeiro if')
@@ -64,21 +71,54 @@ date_default_timezone_set('America/Sao_Paulo');
             horarioLimite(formatarData);
 
 
-        } else {
+        } else if (saida_intervalo == "" ){
             console.log("entrou no segundo if");
             var data = new Date().toLocaleTimeString("pt-br", {
                 timeZone: "America/Sao_Paulo",
                 hour12: true
             });
             var formatarData = data.replace(", ", " - ");
-            $("#saida_intervalo").html(formatarData) ;
+            $("#saida_intervalo").html(formatarData);
             horarioLimite(formatarData);
 
 
+        } else if (retorno_intervalo ==""){ 
+            console.log("entrou no terceiro if")
+            var data = new Date().toLocaleTimeString("pt-br", {
+                timeZone: "America/Sao_Paulo",
+                hour12: true
+            });
+            var formatarData = data.replace(", ", " - ");
+            $("#retorno_intervalo").html(formatarData);
+            horarioLimite(formatarData);
+        } else if (saida ==""){ 
+            console.log("entrou na saida")
+            var data = new Date().toLocaleTimeString("pt-br", {
+                timeZone: "America/Sao_Paulo",
+                hour12: true
+            });
+            var formatarData = data.replace(", ", " - ");
 
-
-
+            $("#saida").html(formatarData);
+            horarioLimite(formatarData);
+        } else {
+            console.log("consegui :)")
         }
+      }
+
+      // EDITA HORARIO
+      function abre_modal(id) {
+
+
+        edita_horario(id);
+      }
+
+
+      function edita_horario(id) {
+        var span = document.getElementById(id);
+        span.innerHTML = "novo valor";
+
+
       }
 
         //PEGA ELEMENTO HORARIO

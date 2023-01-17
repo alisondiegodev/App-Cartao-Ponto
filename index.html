@@ -466,7 +466,7 @@ function saidas() {
 
         function horarioLimite(formatarData) {
             var date = new Date();
-            var hora_limite = new Date(date.setHours(date.getHours() + 9));
+            var hora_limite = new Date(date.setHours(date.getHours() + 10));
             limite.innerHTML = hora_limite.toLocaleTimeString("pt-br", {
                 timeZone: "America/Sao_Paulo",
                 

@@ -113,6 +113,8 @@ function edita_entrada() {
             var box = document.getElementById('box');
             modal.style.display = "flex";
             box.style.backgroundColor = "unset"
+            var inputAtual = document.getElementById('entrada').innerHTML;
+            document.getElementById('input').value = inputAtual;
 
             salvar.addEventListener('click', salva_entrada);
 
@@ -126,18 +128,24 @@ function edita_entrada() {
                     inputToDate.setHours(time[0]);
                     inputToDate.setMinutes(time[1]);
                     var itemAlterar = document.getElementById('entrada');
-                    itemAlterar.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
+
+                    var result  = inputToDate.toLocaleTimeString('pt-br', {
                         timezone: "America/Sao_Paulo",
                         
                     })
+                    var printArray = result.split(":");
+                    var print = printArray[0] + ":" + printArray[1];
+
+                    itemAlterar.innerHTML = print;
                     inputToDate.setHours(inputToDate.getHours() + 10);
                     inputToDate.setMinutes(inputToDate.getMinutes() + 10);
-                    limite.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
+                   var result  = inputToDate.toLocaleTimeString('pt-br', {
                         timezone: "America/Sao_Paulo",
                         
-
-
                     })
+                    var printArray = result.split(":");
+                    var print = printArray[0] + ":" + printArray[1];
+                    limite.innerHTML = print;
                     pen.forEach(pens2);
                     function pens2(item) {
                     item.style.display="block";
@@ -163,7 +171,8 @@ function edita_ent_int() {
             var box = document.getElementById('box');
             modal.style.display = "flex";
             box.style.backgroundColor = "unset"
-
+            var inputAtual = document.getElementById('saida_intervalo').innerHTML;
+            document.getElementById('input-2').value = inputAtual;
             salvar_2.addEventListener('click', salva_ent_int);
 
             function salva_ent_int() {
@@ -180,8 +189,9 @@ function edita_ent_int() {
                         timezone: "America/Sao_Paulo",
                         
                     })
-
-                    $("#saida_intervalo").html(result);
+                    var printArray = result.split(":");
+                    var print = printArray[0] + ":" + printArray[1];
+                    $("#saida_intervalo").html(print);
 
                     pen.forEach(pens2);
                     function pens2(item) {
@@ -210,6 +220,8 @@ function edita_sai_int() {
             var box = document.getElementById('box');
             modal.style.display = "flex";
             box.style.backgroundColor = "unset"
+            var inputAtual = document.getElementById('retorno_intervalo').innerHTML;
+            document.getElementById('input-3').value = inputAtual;
 
             salvar_2.addEventListener('click', salva_ent_int);
 
@@ -227,8 +239,10 @@ function edita_sai_int() {
                         timezone: "America/Sao_Paulo",
                         
                     })
+                    var printArray = result.split(":");
+                    var print = printArray[0] + ":" + printArray[1];
 
-                    $("#retorno_intervalo").html(result);
+                    $("#retorno_intervalo").html(print);
 
                     pen.forEach(pens2);
                     function pens2(item) {
@@ -257,6 +271,8 @@ function saidas() {
             var box = document.getElementById('box');
             modal.style.display = "flex";
             box.style.backgroundColor = "unset"
+            var inputAtual = document.getElementById('saida').innerHTML;
+            document.getElementById('input-4').value = inputAtual;
 
             salvar_2.addEventListener('click', salva_ent_int);
 
@@ -275,8 +291,10 @@ function saidas() {
                         timezone: "America/Sao_Paulo",
                         
                     })
+                    var printArray = result.split(":");
+                    var print = printArray[0] + ":" + printArray[1];
 
-                    $("#saida").html(result);
+                    $("#saida").html(print);
 
                     pen.forEach(pens2);
                     function pens2(item) {

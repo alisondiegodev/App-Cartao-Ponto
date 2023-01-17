@@ -26,7 +26,7 @@
                 <div class="flex-li">
                     <li>
                         <p>Entrada: </p> <span id="entrada"></span>
-                    </li><span onclick="abre_modal('entrada')"> <svg class="pen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                    </li><span onclick="edita_entrada()"> <svg class="pen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
                             <path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path>
                             <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
                         </svg></span>
@@ -35,7 +35,7 @@
                 <div class="flex-li">
                     <li>
                         <p>Saida Intervalo: </p> <span id="saida_intervalo"></span>
-                    </li><span onclick="abre_modal('saida_intervalo')"> <svg class="pen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                    </li><span onclick="edita_ent_int()"> <svg class="pen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
                             <path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path>
                             <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
                         </svg></span>
@@ -73,8 +73,11 @@
             <h3 class="editar-titulo">Editar Horario</h3>
             <input type="time" id="input" name="horario">
             <button id="salvar">Salvar</button>
-
-
+        </div>
+        <div  id="input-box-2" class="edit-box">
+            <h3 class="editar-titulo">Editar Horario</h3>
+            <input type="time" id="input-2" name="horario">
+            <button id="salvar-2">Salvar</button>
         </div>
     </div>
 
@@ -87,80 +90,180 @@
         var saida = $('#saida').html();
 
         // EDITA HORARIO
-        function abre_modal(id) {
+
+function edita_entrada() {
+    console.log("entrada")
             var pen = document.querySelectorAll('.pen')
             pen.forEach(pens);
             function pens(item) {
                 item.style.display="none";
             }
-
             var modal = document.getElementById('input-box');
-            var itemAlterar = document.getElementById(id);;
             var salvar = document.getElementById('salvar');
             var box = document.getElementById('box');
             modal.style.display = "flex";
             box.style.backgroundColor = "unset"
 
-            salvar.addEventListener('click', edita_horario);
+            salvar.addEventListener('click', salva_entrada);
 
-            function edita_horario() {
-                var modal = document.getElementById('input-box');
-                var box = document.getElementById('box');
-                var pen = document.querySelectorAll('.pen')
-                pen.forEach(pens);
-                function pens(item) {
-                item.style.display="block";
-            }
-                box.style.backgroundColor = "#fff"
+            function salva_entrada() {
+                    var inputUsuario = document.getElementById('input').value;
+                    var time = inputUsuario.split(":");
+                    inputToDate = new Date();
+                    inputToDate.setHours(time[0]);
+                    inputToDate.setMinutes(time[1]);
+                    var itemAlterar = document.getElementById('entrada');
+                    itemAlterar.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
+                        timezone: "America/Sao_Paulo",
+                        hour12: true
+                    })
+                    inputToDate.setHours(inputToDate.getHours() + 10);
+                    inputToDate.setMinutes(inputToDate.getMinutes() + 10);
+                    limite.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
+                        timezone: "America/Sao_Paulo",
+                        hour12: true
 
 
-                var inputUsuario = document.getElementById('input').value;
-                if (inputUsuario == "") {
-                    console.log("vazio")
+                    })
+                    pen.forEach(pens2);
+                    function pens2(item) {
+                    item.style.display="block";
+                    }
+                    
                     modal.style.display = "none";
+                    box.style.backgroundColor = "#fff"
 
-                } else {
 
+            }
+
+}
+function edita_ent_int() {
+    console.log("intervalo")
+
+            var pen = document.querySelectorAll('.pen')
+            pen.forEach(pens);
+            function pens(item) {
+                item.style.display="none";
+            }
+            var modal = document.getElementById('input-box-2');
+            var salvar_2 = document.getElementById('salvar-2');
+            var box = document.getElementById('box');
+            modal.style.display = "flex";
+            box.style.backgroundColor = "unset"
+
+            salvar_2.addEventListener('click', salva_ent_int);
+
+            function salva_ent_int() {
+                    var inputUsuario = document.getElementById('input-2').value;
                     var time = inputUsuario.split(":");
                     inputToDate = new Date();
                     inputToDate.setHours(time[0]);
                     inputToDate.setMinutes(time[1]);
 
-                    if (id == "entrada") {
-                        itemAlterar.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
-                            timezone: "America/Sao_Paulo",
-                            hour12: true
-                        })
-                        inputToDate.setHours(inputToDate.getHours() + 10);
-                        inputToDate.setMinutes(inputToDate.getMinutes() + 10);
-                        limite.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
-                            timezone: "America/Sao_Paulo",
-                            hour12: true
+                    var result = inputToDate.toLocaleTimeString('pt-br', {
+                        timezone: "America/Sao_Paulo",
+                        hour12: true
+                    })
 
+                    $("#saida_intervalo").html(result);
 
-                        })
-                        modal.style.display = "none";
-                        box.style.backgroundColor = "#fff"
-                        console.log();
-
-
-                    } else {
-
-                        console.log("não entrou")
-
-
-                        itemAlterar.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
-                            timezone: "America/Sao_Paulo",
-                            hour12: true
-
-
-                        })
-                        modal.style.display = "none";
+                    pen.forEach(pens2);
+                    function pens2(item) {
+                    item.style.display="block";
                     }
-                }
+                    
+                    modal.style.display = "none";
+                    box.style.backgroundColor = "#fff"
+
+
 
             }
-        }
+
+}
+
+
+
+
+
+
+
+
+
+
+        // function abre_modal(id) {
+        //     const ids = id;
+            
+        //     var pen = document.querySelectorAll('.pen')
+        //     pen.forEach(pens);
+        //     function pens(item) {
+        //         item.style.display="none";
+        //     }
+
+        //     var modal = document.getElementById('input-box');
+        //     var salvar = document.getElementById('salvar');
+        //     var box = document.getElementById('box');
+        //     modal.style.display = "flex";
+        //     box.style.backgroundColor = "unset"
+
+        //     salvar.addEventListener('click', edita_horario);
+        //     function edita_horario() {
+        //         if (id === "entrada") {
+        //             console.log("entrou na entrada")
+        //             var inputUsuario = document.getElementById('input').value;
+        //             var time = inputUsuario.split(":");
+        //             inputToDate = new Date();
+        //             inputToDate.setHours(time[0]);
+        //             inputToDate.setMinutes(time[1]);
+        //             var itemAlterar = document.getElementById('entrada');
+        //             itemAlterar.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
+        //                 timezone: "America/Sao_Paulo",
+        //                 hour12: true
+        //             })
+        //             inputToDate.setHours(inputToDate.getHours() + 10);
+        //             inputToDate.setMinutes(inputToDate.getMinutes() + 10);
+        //             limite.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
+        //                 timezone: "America/Sao_Paulo",
+        //                 hour12: true
+
+
+        //             })
+                  
+        //             } else if(id === "saida_intervalo") {
+        //                 console.log("entrou na saida intervalo")
+
+        //                 var inputUsuario = document.getElementById('input').value;
+        //                 var time = inputUsuario.split(":");
+        //                 inputToDate = new Date();
+        //                 inputToDate.setHours(time[0]);
+        //                 inputToDate.setMinutes(time[1]);
+
+        //                 var itemAlterar = document.getElementById('saida_intervalo');
+
+        //                 itemAlterar.innerHTML = inputToDate.toLocaleTimeString('pt-br', {
+        //                     timezone: "America/Sao_Paulo",
+        //                     hour12: true
+
+
+        //                 })
+
+                       
+        //             }else {
+        //                 console.log("outro");
+        //             }
+        //         var modal = document.getElementById('input-box');
+        //         var box = document.getElementById('box');
+        //         var pen = document.querySelectorAll('.pen')
+        //         pen.forEach(pens2);
+
+        //         function pens2(item) {
+        //         item.style.display="block";
+        //         }
+        //         box.style.backgroundColor = "#fff"
+        //         modal.style.display = "none";
+        //         }
+
+        //     }
+        
 
 
 

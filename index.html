@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./icon.webp" type="image/x-icon">
     <title>Ponto</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,6 +88,11 @@
 
         // EDITA HORARIO
         function abre_modal(id) {
+            var pen = document.querySelectorAll('.pen')
+            pen.forEach(pens);
+            function pens(item) {
+                item.style.display="none";
+            }
 
             var modal = document.getElementById('input-box');
             var itemAlterar = document.getElementById(id);;
@@ -100,6 +106,11 @@
             function edita_horario() {
                 var modal = document.getElementById('input-box');
                 var box = document.getElementById('box');
+                var pen = document.querySelectorAll('.pen')
+                pen.forEach(pens);
+                function pens(item) {
+                item.style.display="block";
+            }
                 box.style.backgroundColor = "#fff"
 
 
@@ -130,6 +141,7 @@
                         })
                         modal.style.display = "none";
                         box.style.backgroundColor = "#fff"
+                        console.log();
 
 
                     } else {

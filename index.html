@@ -18,7 +18,6 @@
 <body>
     <div class="container">
         <div id="box" class="box">
-            <p if></p>
             <p id="horario"></p>
 
             <h1>Ponto Fácil</h1>
@@ -269,15 +268,14 @@ function edita_sai_int() {
                     
                     modal.style.display = "none";
                     box.style.backgroundColor = "#fff"
-
-
-
+                    recalcularLimite(inputToDate);
             }
+
+            
 
 }
 
 function saidas() {
-    console.log("saida")
 
             var pen = document.querySelectorAll('.pen')
             pen.forEach(pens);
@@ -368,6 +366,10 @@ function saidas() {
                 var formatarData = arrayData[0] + ":" + arrayData[1];
 
                 $("#retorno_intervalo").html(formatarData);
+
+                var inputToDate = new Date();
+                recalcularLimite(inputToDate);
+
             } else if (saida == "") {
                 var data = new Date().toLocaleTimeString("pt-br", {
                     timeZone: "America/Sao_Paulo",
@@ -391,12 +393,63 @@ function saidas() {
                 timeZone: "America/Sao_Paulo"
             });
             var split = data.split(" ");
-            formatarData = split[0] + "<br>" + split[1];
+            formatarData = split[0] + "<p>" + split[1] + "</p>";
             apHorario.innerHTML = formatarData;
         }
 
-        setInterval(atualizarHorario, 1000);
         atualizarHorario();
+        setInterval(atualizarHorario, 1000);
+
+        function recalcularLimite(inputToDate) {
+            var intervaloStr = document.getElementById('saida_intervalo').innerHTML;
+            var intervaloSplit = intervaloStr.split(":");
+
+            var entradaStr = document.getElementById('entrada').innerHTML;
+            var entradaSplit = entradaStr.split(":");
+
+            var saidaToDate = new Date();
+            saidaToDate.setHours(intervaloSplit[0]);
+            saidaToDate.setMinutes(intervaloSplit[1]);
+
+            
+            var entradaHoraInt = parseInt(entradaSplit[0]);
+            var entradaMinInt = parseInt(entradaSplit[1]);
+            var hora_minimo = new Date(saidaToDate.setHours(saidaToDate.getHours() - entradaHoraInt));
+            hora_minimo.setMinutes(saidaToDate.getMinutes() - entradaMinInt);
+
+            var toCalc = new Date()
+            toCalc.setHours("07");
+            toCalc.setMinutes("20");
+
+            var getMilliseconds = Math.abs(toCalc - hora_minimo);
+            var makeMinutes = getMilliseconds / (1000 * 60);
+            var hours = Math.floor(makeMinutes / 60);
+            var minutes = makeMinutes % 60;
+            
+            inputToDate.setHours(inputToDate.getHours() + hours);
+            inputToDate.setMinutes(inputToDate.getMinutes() + minutes);
+
+            var resultFinal = inputToDate.toLocaleTimeString('pt-br', {
+                timezone: "America/Sao_Paulo"
+            });
+            var arrayMinimo = resultFinal.split(':');
+            var formatarData = arrayMinimo[0] + ":" + arrayMinimo[1];
+
+            minimo.innerHTML = formatarData;
+
+            inputToDate.setHours(inputToDate.getHours() + 2);
+
+            var limiteMax = inputToDate.toLocaleTimeString('pt-br', {
+                timezone: "America/Sao_Paulo"
+            });
+
+            arrayLimite = limiteMax.split(':');
+            var formatarData = arrayLimite[0] + ":" + arrayLimite[1];
+            limite.innerHTML = formatarData;
+           
+           
+
+        }
 
 
         function horarioMinimo() {
@@ -425,7 +478,6 @@ function saidas() {
             var formatarData = arrayData[0] + ":" + arrayData[1];
             limite.innerHTML = formatarData;
           
-
         }
     </script>
 </body>

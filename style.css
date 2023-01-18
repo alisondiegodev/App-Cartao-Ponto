@@ -117,6 +117,10 @@ img {
     padding: 15px;
     box-shadow: 0px 0px 3px 1px #333;
     border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    gap: 21px;
+    height: 126px;
 }
 #input, .input-new {
     width: 185px;
@@ -143,6 +147,14 @@ body {
     background-color: #fff;
     
 }
+
+#horario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
 .edit-box {
     position: absolute;
     background-color: #fff;
@@ -151,6 +163,17 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.edit-box button {
+    padding: 10px 20px;
+    margin-left: 6px;
+    margin-right: 6px;
+    background: linear-gradient(93deg, #f1f1f1, transparent), #efefef;
+    border-radius: 10px;
+    outline: unset;
+    border: unset;
+    box-shadow: 0px 0px 3px 1px #cfcfcf;
+    font-weight: 600;
+}
 .flex-li li span,
 #limite,
 #minimo {
@@ -171,6 +194,15 @@ body {
     .box {
         max-width: 100vw;
         padding: 0px 0px 40px 0px;
+    }
+}
+@media (max-width: 340px) {
+    .box {
+        width: 100vw;
+        margin-top: 0px;
+    }
+    .lista-pontos li {
+        width: 252px;
     }
 }
 

@@ -40,9 +40,8 @@ img {
     margin: 0 auto;
     margin-top: 60px;
     gap: 15px;
-    box-shadow: 2px 4px 6px 1px #383838;
+    box-shadow: 0px 2px 29px 1px #7a7a7a;
     width: 450px;
-    border-radius: 20px;
     padding: 30px 10px 40px 10px;
     position: relative;
     max-width: 100%;
@@ -136,7 +135,7 @@ img {
     width: 185px;
 }
 body {
-    background-color: #dbdbdb;
+    background: url('./overlay.png'), #dbdbdb;
 }
 
 .box {
@@ -152,6 +151,14 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.flex-li li span,
+#limite,
+#minimo {
+    width: 73px;
+    box-shadow: 0px 0px 3px -1px black;
+    border-radius: 3px;
+    text-align: center;
+}
 
 @media (max-width: 700px) {
     .container {
@@ -159,7 +166,7 @@ body {
         margin: 0 auto;
     }
     .lista-pontos li {
-        width: 220px;
+        width: 285px;
     }
     .box {
         max-width: 100vw;

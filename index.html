@@ -34,7 +34,7 @@
 
                 <div class="flex-li">
                     <li>
-                        <p>Saida Intervalo: </p> <span id="saida_intervalo"></span>
+                        <p>Saida Almoço: </p> <span id="saida_intervalo"></span>
                     </li><span onclick="edita_ent_int()"> <svg class="pen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
                             <path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path>
                             <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
@@ -43,7 +43,7 @@
 
                 <div class="flex-li">
                     <li>
-                        <p>Retorno Intervalo: </p> <span id="retorno_intervalo"></span>
+                        <p>Retorno Almoço: </p> <span id="retorno_intervalo"></span>
                     </li><span onclick="edita_sai_int()"> <svg class="pen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
                             <path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path>
                             <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
@@ -58,9 +58,14 @@
                             <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
                         </svg></span>
                 </div>
-
+<br>
                 <li>
-                    <p>Horario Limite: </p> <span id="limite"></span>
+                    <p>Minimo: </p> <span id="minimo"></span>
+                    
+                </li>
+                <li>
+                    <p>Limite: </p> <span id="limite"></span>
+                    
                 </li>
 
             </ul>
@@ -94,6 +99,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
         var limite = document.getElementById('limite');
+        var minimo = document.getElementById('minimo');
         var entrada = $('#entrada').html();
         var saida_intervalo = $('#saida_intervalo').html();
         var retorno_intervalo = $('#retorno_intervalo').html();
@@ -146,6 +152,18 @@ function edita_entrada() {
                     var printArray = result.split(":");
                     var print = printArray[0] + ":" + printArray[1];
                     limite.innerHTML = print;
+                    // HORARIO MINIMO
+
+                    var horaMinimo = inputToDate.setHours(inputToDate.getHours() - 2);
+                    var resultMinimo = inputToDate.toLocaleTimeString('pt-br', {
+                        timezone: "America/Sao_Paulo",
+                        
+                    })
+                    var arrayMinimo = resultMinimo.split(":");
+                    var printMin = arrayMinimo[0] + ":" + arrayMinimo[1];
+                    minimo.innerHTML = printMin;
+
+                    // STYLES
                     pen.forEach(pens2);
                     function pens2(item) {
                     item.style.display="block";
@@ -318,23 +336,17 @@ function saidas() {
             var saida = $('#saida').html();
 
             if (entrada == "") {
-                console.log('entrou no primeiro if')
                 var data = new Date().toLocaleTimeString("pt-br", {
                     timeZone: "America/Sao_Paulo",
                     
                 });
                 var arrayData = data.split(":");
                 var formatarData = arrayData[0] + ":" + arrayData[1];
-
-
-
-
                 document.getElementById('entrada').innerHTML = formatarData;
-                horarioLimite(formatarData);
-
+                horarioLimite();
+                horarioMinimo();
 
             } else if (saida_intervalo == "") {
-                console.log("entrou no segundo if");
                 var data = new Date().toLocaleTimeString("pt-br", {
                     timeZone: "America/Sao_Paulo",
                     
@@ -348,7 +360,6 @@ function saidas() {
 
 
             } else if (retorno_intervalo == "") {
-                console.log("entrou no terceiro if")
                 var data = new Date().toLocaleTimeString("pt-br", {
                     timeZone: "America/Sao_Paulo",
                     
@@ -358,18 +369,15 @@ function saidas() {
 
                 $("#retorno_intervalo").html(formatarData);
             } else if (saida == "") {
-                console.log("entrou na saida")
                 var data = new Date().toLocaleTimeString("pt-br", {
                     timeZone: "America/Sao_Paulo",
                     
                 });
                 var arrayData = data.split(":");
                 var formatarData = arrayData[0] + ":" + arrayData[1];
-
-
                 $("#saida").html(formatarData);
             } else {
-                console.log("consegui :)")
+                console.log("Code By Alison Diego")
             }
         }
 
@@ -390,7 +398,24 @@ function saidas() {
         setInterval(atualizarHorario, 1000);
         atualizarHorario();
 
-        function horarioLimite(formatarData) {
+
+        function horarioMinimo() {
+            var date = new Date();
+            var hora_minimo = new Date(date.setHours(date.getHours() + 8));
+            hora_minimo.setMinutes(hora_minimo.getMinutes() + 10)
+            var data = hora_minimo.toLocaleTimeString('pt-br', {
+                timezone: "America/Sao_Paulo"
+            });
+            var arrayMinimo = data.split(":");
+            var formatarData = arrayMinimo[0] + ":" + arrayMinimo[1];
+            minimo.innerHTML = formatarData;
+            
+
+
+        }
+
+
+        function horarioLimite() {
             var date = new Date();
             var hora_limite = new Date(date.setHours(date.getHours() + 10));
             var data = hora_limite.toLocaleTimeString('pt-br', {
@@ -398,8 +423,6 @@ function saidas() {
             });
             var arrayData = data.split(":");
             var formatarData = arrayData[0] + ":" + arrayData[1];
-
-
             limite.innerHTML = formatarData;
           
 

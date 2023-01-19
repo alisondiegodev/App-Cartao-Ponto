@@ -74,24 +74,40 @@
 
         </div>
         <div id="input-box" class="edit-box">
-            <h3 class="editar-titulo">Editar Horario</h3>
-            <input type="time" id="input" name="horario">
-            <button id="salvar">Salvar</button>
+            <div class="box-relative">
+                <h3 class="editar-titulo">Editar Horario</h3>
+                <input type="time" id="input" name="horario">
+                <button id="salvar">Salvar</button>
+                <span class="sair">X</span>
+            </div>
         </div>
         <div  id="input-box-2" class="edit-box">
+            <div class="box-relative">
             <h3 class="editar-titulo">Editar Horario</h3>
             <input type="time" id="input-2" name="horario">
             <button id="salvar-2">Salvar</button>
+            <span class="sair">X</span>
+
+        </div>
         </div>
         <div  id="input-box-3" class="edit-box">
+            <div class="box-relative">
             <h3 class="editar-titulo">Editar Horario</h3>
             <input type="time" id="input-3" name="horario" class="input-new">
             <button id="salvar-3">Salvar</button>
+            <span class="sair">X</span>
+
+        </div>
         </div>
         <div  id="input-box-4" class="edit-box">
+            <div class="box-relative">
+
             <h3 class="editar-titulo">Editar Horario</h3>
             <input type="time" id="input-4" name="horario" class="input-new">
             <button id="salvar-4">Salvar</button>
+            <span class="sair">X</span>
+
+        </div>
         </div>
     </div>
 
@@ -142,10 +158,33 @@
         }
         return "";
         }
+
+        var fechar = document.querySelectorAll('.sair');
+        fechar.forEach(eventClick);
+        function eventClick(item){
+            item.addEventListener( "click", fechaModal);
+        }
        
+        function fechaModal() {
+            console.log("fechar");
+        var modal = document.querySelectorAll('.edit-box');
+        var box = document.getElementById('box');
+        var pen = document.querySelectorAll('.pen')
 
+        modal.forEach((item) => {
+            item.style.display = "none";
 
+        });
+        
 
+        box.style.backgroundColor = "#fff"
+
+        pen.forEach((el) => {
+            el.style.display="block";
+        })
+                    
+                   
+    }
 
 
         // EDITA HORARIO

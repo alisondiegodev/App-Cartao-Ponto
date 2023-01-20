@@ -34,7 +34,7 @@ body {
     height: 252px;
     opacity: 0;
     transform: translateY(20px);
-    animation: beam 10s cubic-bezier(0.455, 0.03, 0.515, 0.955) 5s infinite;
+    animation: beam 10s cubic-bezier(0.455, 0.03, 0.515, 0.955) 6.4s infinite;
     transform: translateY(-98px);
     position: relative;
     z-index: 22;
@@ -63,12 +63,12 @@ body {
     20% {
         transform: translateY(70px);
    }
+   
+   
     60% {
-        transform: translateY(65px);
+        transform: translateY(55px);
    }
-    80% {
-        transform: translateY(70px);
-   }
+   
     100% {
         transform: translateY(70px);
    }
@@ -320,7 +320,7 @@ body {
     /* width: 30px; */
     font-size: 43px;
     color: #000;
-    text-shadow: 2px 2px #289d67;
+    text-shadow: 2px 2px #a5a5a5;
     filter: drop-shadow(0px 0px 2px #4d4);
 }
 .edit-box button {
@@ -377,7 +377,7 @@ gap: 30px;
 }
 
 .logo img {
-    width: 90px;
+    width: 40px;
     filter: invert() drop-shadow(0px 0px 1px #4d4);
     padding-top: 15px;
 }

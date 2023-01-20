@@ -1,3 +1,142 @@
+/* FIRULA  */
+body {
+    background: #1d0534;
+}
+.firula {
+    margin-top: -120px;
+    height: 90px;
+}
+/* .wrapper {
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    background: #1d0534;
+    overflow: hidden;
+} */
+.wrapper .ufo {
+    display: block;
+    width: 50px;
+    height: 168px;
+    margin: 0 auto;
+    transform: translateY(70px);
+    animation: flying 10s cubic-bezier(0.165, 0.84, 0.44, 1)  ;
+    z-index: 1;
+    position: relative;
+    opacity: 1;
+    transition: opacity 2s ;
+    filter: drop-shadow(0px 0px 1px #555);
+    
+}
+.wrapper .beam {
+    display: block;
+    margin: 0 auto;
+    width: 50px;
+    height: 252px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: beam 10s cubic-bezier(0.455, 0.03, 0.515, 0.955) 5s infinite;
+    transform: translateY(-98px);
+    position: relative;
+    z-index: 22;
+
+}
+.wrapper .beam .beam-2 {
+    opacity: 0;
+    animation: spotlight 10s ease-in-out 5.3s infinite;
+}
+.wrapper .sheep {
+    display: block;
+    width: 120px;
+    height: 162px;
+    margin: 0 auto;
+    transform: translateY(-100px) rotate(-12deg);
+    animation: abduction 10s ease-in-out 5.8s infinite;
+}
+.wrapper a {
+    color: #fff;
+    font-family: sans-serif;
+}
+@keyframes flying {
+    0% {
+        transform: translateY(-800px);
+   }
+    20% {
+        transform: translateY(70px);
+   }
+    60% {
+        transform: translateY(65px);
+   }
+    80% {
+        transform: translateY(70px);
+   }
+    100% {
+        transform: translateY(70px);
+   }
+}
+@keyframes beam {
+    0% {
+        opacity: 0;
+   }
+    20% {
+        opacity: 1;
+   }
+    30% {
+        opacity: 1;
+   }
+    40% {
+        opacity: 0;
+   }
+    100% {
+        opacity: 0;
+   }
+}
+@keyframes spotlight {
+    0% {
+        opacity: 0;
+   }
+    20% {
+        opacity: 0.3;
+   }
+    30% {
+        opacity: 0.3;
+   }
+    40% {
+        opacity: 0;
+   }
+    100% {
+        opacity: 0;
+   }
+}
+@keyframes abduction {
+    0% {
+        transform: translateY(-100px) rotate(-12deg);
+        opacity: 1;
+   }
+    30% {
+        transform: translateY(-200px) rotate(0);
+        opacity: 0;
+   }
+    55% {
+        opacity: 0;
+   }
+    56% {
+        transform: translateY(-100px) rotate(-12deg);
+   }
+    60% {
+        opacity: 1;
+   }
+    100% {
+        opacity: 1;
+   }
+}
+
+
+
+
+
+
+
+/* FINAL FIRULA  */
 body {
     margin: 0px;
     font-family: 'Poppins' , sans-serif;
@@ -151,10 +290,12 @@ body {
 #horario {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    
     align-items: center;
     padding-top: 10px;
-    width: 100%;
+    padding-right: 20px;
+    width: 86%;
     font-size: 22px;
     font-weight: 800;
     font-family: 'Roboto';

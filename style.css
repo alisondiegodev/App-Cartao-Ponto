@@ -1,4 +1,7 @@
 /* FIRULA  */
+html , body{
+    overflow: hidden;
+}
 body {
     background: #1d0534;
 }

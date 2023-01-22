@@ -179,11 +179,13 @@ img {
     margin: 0 auto;
     margin-top: 60px;
     gap: 15px;
-    box-shadow: 0px 2px 29px 1px #7a7a7a;
     width: 450px;
     padding: 30px 10px 40px 10px;
     position: relative;
     max-width: 100%;
+    box-shadow: 0px 2px 4px 1px #7a7a7a;
+    border-radius: 5px;
+
     
 
 }
@@ -195,7 +197,7 @@ img {
     text-transform: uppercase;
     color: #fff;
     border-radius: 10px;
-    box-shadow: 2px 4px 6px 1px #838383;
+    box-shadow: 0px 1px 1px 1px #878787;
     filter: opacity(0.7);
     text-shadow: 2px 2px 5px #121212;
     font-size: 110%;
@@ -221,7 +223,7 @@ img {
     gap: 30px;
     width: 350px;
     margin-top: 10px;
-    box-shadow: 0px 0px 2px 1px #333;
+    box-shadow: 0px 0px 1px 1px #d5d5d5;
     padding: 5px;
     border-radius: 5px;
     max-width: 100%;
@@ -243,7 +245,7 @@ img {
 .pen {
     width: 32px;
     height: 32px;
-    fill: rgb(81 104 161) !important;
+    fill: rgb(118 118 118) !important;
     cursor: pointer;
 }
 
@@ -340,7 +342,7 @@ body {
 #limite,
 #minimo {
     width: 73px;
-    box-shadow: 0px 0px 3px -1px black;
+    box-shadow: 0px 0px 3px -1px #939393;
     border-radius: 3px;
     text-align: center;
 }
